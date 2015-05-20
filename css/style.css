@@ -1,0 +1,143 @@
+/*POSDTA*/
+/*
+/*
+/*
+/*INDEX
+/*1.-GLOBALS
+/*1.1-NAVBAR
+/*1.2-FOOTER
+/*2.-HOMEPAGE
+/*2.1-MAIN FRAME
+/*2.2-LOWER INFO BLOCKS
+/*2.3-LATERAL BAR
+/*2.3.1-LATERAL BAR UPPER
+/*2.3.1.1-LATERAL BAR UPPER SLIDER
+/*2.3.1.1.1-LATERAL BAR UPPER SLIDER BOOK THUMBS
+/*2.3.2-LATERAL BAR LOWER
+/*2.3.2.1-LATERAL BAR LOWER LIST
+/*3.-BOOK PAGE
+/*3.1-LATERAL MENU
+/*3.2-BOOK INFO
+/*3.2.1-BOOK ACTIONS
+/*3.2.2-BOOK REVIEWS
+/*3.2.2.1-BOOK REVIEWS ACTIONS
+/*3.2.3-RELATED BOOKS
+/*
+/*---------------*/
+/*--1.GlOBALS----*/
+/*---------------*/
+@import url(http://fonts.googleapis.com/css?family=Lato:300);
+body{font-family: 'Lato', sans-serif !important;background:#202022 !important;}
+footer{margin:15px 0 15px 0;color:#e2e2e2;}
+/*---------------*/
+/*--1.1-NAVBAR---*/
+/*---------------*/
+div.lateral-one{padding:50px 0 0 0;}
+img.logo{height:33px;position:relative;top:-7px;}
+.navbar-custom{background-color: #000000;}
+div.login-details{padding:10px;}
+div.login-details .user-img{float:left;background:url(../img/sj.jpg);background-position: center;background-size: 100%;background-repeat: no-repeat;width:40px;height:40px;position:relative;top:-5px;}
+div.login-details .user-name{float:left;color:#fff;padding:5px;}
+/*---------------*/
+/*--1.2-FOOTER---*/
+/*---------------*/
+div.footer-links{display:inline-block;float:right;}
+div.footer-links a{margin-left:10px;}
+/*---------------*/
+/*--2 HOMEPAGE---*/
+/*---------------*/
+/*-------------------*/
+/*--2.1 MAIN FRAME---*/
+/*-------------------*/
+div.main-background{background:url(../img/background7.jpg) 50% 0 fixed;height:585px;padding:40px;background-repeat: no-repeat;}
+div.welcome-text{font-size: 46px;color:#FFF;margin-left:auto;margin-right:auto;width:100%;text-align: center;position: relative;top: 40%;transform: translateY(-40%);}
+/*--------------------------*/
+/*--2.2-LOWER INFO BLOCKS---*/
+/*--------------------------*/
+.info{color:#fff;height:230px;border-left:solid 1px #212121;border-top:solid 1px #212121;border-bottom:solid 1px #212121;}
+.first{background:#202022;border-left:0px !important;}
+.second{background:#878787;}
+.third{background:#003645}
+/*--------------------*/
+/*--2.3-LATERAL BAR---*/
+/*--------------------*/
+.sub-lateral{color:#fff;padding:10px;border-left:solid 2px #212121;}
+.sub-lateral .title{color:white;font-size: 20px;padding:10px;text-align: center;}
+/*----------------------------*/
+/*--2.3.1-LATERAL BAR UPPER---*/
+/*----------------------------*/
+.sub-lateral .one{padding:0px 0 0 0;background-color: #003645;height:auto;background:url(../img/sliderbg.jpg);background-size:200%;background-position: center;background-repeat: no-repeat}
+/*-------------------------------------*/
+/*--2.3.1.1-LATERAL BAR UPPER SLIDER---*/
+/*-------------------------------------*/
+.slider-book-background{width: 100%;height:100%;}
+.slider-book-overlay{width:100%;height:100%;background-color: rgba(0,0,0,0.7);padding:20px;}
+.banner { position: relative; overflow: auto; width:100%; padding:0px;}
+.banner li { height:auto; list-style: none;}
+.banner ul li { float: left; }
+.banner ul{padding:0;}
+/*---------------------------------------------------*/
+/*--2.3.1.1.1-LATERAL BAR UPPER SLIDER BOOK THUMBS---*/
+/*---------------------------------------------------*/
+.book-sm{padding-top: 15px;text-align: center;}
+.book-sm img{width:20%;}
+.book-sm .book-title{font-size: 12px;color:#eee;}
+.book-sm .book-author{font-size: 10px;color:#eee;}
+.book-sm .book-rating{font-size: 10px;color:#eee;}
+.book-sm .book-cover{width:100%;font-size: 10px;color:#eee;}
+/*----------------------------*/
+/*--2.3.2-LATERAL BAR LOWER---*/
+/*----------------------------*/
+.sub-lateral .two{padding:0 0 10px 0;background-color: #202022;height: 300px;overflow-x:none;overflow-y:auto;}
+.sub-lateral.two .title{padding-bottom:25px;}
+/*-------------------------------------*/
+/*--2.3.2.1-LATERAL BAR LOWER LIST---*/
+/*-------------------------------------*/
+ul.featured li {list-style-type: none;padding:15px 0 7px 0;text-decoration: center;border-bottom: solid 1px black;}
+ul.featured li img{margin: 0 20px 0 3px;width:8%;position:relative;top:-8px;}
+/*----------------*/
+/*--3 BOOK PAGE---*/
+/*----------------*/
+div.margin-of-top-bar{margin-top:50px;padding:0px;}
+/*---------------------*/
+/*--3.1 LATERAL MENU---*/
+/*---------------------*/
+div.lateral-menu{height:auto;color:#fff;padding:0px;}
+div.lateral-menu ul{padding-left:19px;}
+div.lateral-menu ul li{list-style-type: none;padding:5px 0 5px 0;border-bottom: solid 1px white;}
+div.lateral-menu ul li img{height:15px; width:15px;margin-right:5px; position:relative;top:-2px;}
+/*---------------------*/
+/*--3.2 BOOK INFO------*/
+/*---------------------*/
+div.content-container{padding:0px;background:#fff;}
+div.book-title h1{margin-bottom:0;}
+div.book-author h2{margin:0;}
+div.book-publisher{}
+div.book-year{font-size:9px;}
+div.book-rating{font-size: 9px;}
+div.book-cover-container{text-align: center;padding:20px;}
+div.book-cover-container img{height:300px;}
+/*----------------------------*/
+/*--3.2.1 BOOK ACTIONS--------*/
+/*----------------------------*/
+div.actions-container{padding-bottom:20px;}
+div.actions-container div{padding-top:20px;text-align: center;}
+/*--------------------------*/
+/*--3.2.2 BOOK REVIEWS------*/
+/*--------------------------*/
+div.dividing-title{padding:3px 3px 3px 20px;background:#002029;margin:0;color:#fff;}
+div.module{padding:0;}
+div.comment{background:#efefef;margin:2px 0 2px 0;padding:20px;}
+div.comment .comment-name{display:inline;}
+div.comment .comment-content{}
+div.comment .comment-rating{padding-left:10px;display:inline;}
+/*-------------------------------*/
+/*--3.2.2.1 REVIEWS ACTIONS------*/
+/*-------------------------------*/
+div.comment .comment-actions{padding-top:5px;padding-bottom:5px;}
+div.comment .comment-actions div{display:inline;font-size:9px;padding:0 5px 0 5px;}
+/*---------------------------*/
+/*--3.2.3 RELATED BOOKS------*/
+/*---------------------------*/
+div.related-container{color:#000;padding-top:10px;padding-bottom:20px;}
+div.related-container div{color:#000 !important;}
