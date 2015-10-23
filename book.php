@@ -62,6 +62,57 @@ $callForInfo = authenticationlessCurlCall("GET", "api/books/".$bookId."/info");
 	<!-- Backbone js for mvc -->
 	<script type="text/javascript" src="js/underscore.1.8.3.js"></script>
 	<script type="text/javascript" src="js/backbone.min.1.2.1.js"></script>
+	<script type="text/javascript">
+	function wishlist(book) {
+		alert("wishlist");
+		$.ajax({
+			url: 'php/ajax/addToWishlist.php',
+			data: {book: book},
+			success: function() {
+				//Change controls
+			},
+			error: function(data) {
+				//TODO Check error
+				console.log(data);
+			}
+		});
+	}
+	
+	function unwishlist(book) {
+		alert("unwishlist");
+		$.ajax({
+			url: 'php/ajax/removeFromWishlist.php',
+			data: {book: book},
+			success: function() {
+				//Change controls
+			},
+			error: function(data) {
+				//TODO Check error
+				console.log(data);
+			}
+		});
+	}
+	
+	function favorite() {
+		alert("favroiting");
+	}
+	
+	function unfavorite() {
+		alert("unfavoriting");
+	}
+	
+	function startReading() {
+		alert("started reading");
+	}
+	
+	function stopReading() {
+		alert("stop reading");
+	}
+	
+	function posdta() {
+		alert("posdtating");
+	}
+	</script>
 </head>
 <body>
 	<div class="container">
@@ -72,7 +123,31 @@ $callForInfo = authenticationlessCurlCall("GET", "api/books/".$bookId."/info");
 			<div class="row">
 				<div class="">
 					<?php
-					if(isset($_SESSION[SID]))print_r($callForUserInteraction);
+					if(isset($_SESSION[SID])){
+						$interaction = json_decode($callForUserInteraction[RESPONSE], true);
+						print_r($interaction);
+						var_dump($interaction);
+						if($interaction['wishlisted'] == false){
+							echo "<button type='button' onclick='wishlist(".$bookId.");'>Add to wishlist</button>";
+						} else {
+							echo "<button type='button' onclick='unwishlist(".$bookId.");'>Remove from wishlist</button>";
+						}
+						if($interaction['favorite'] == false){
+							echo "<button type='button' onclick='favorite(".$bookId.");'>Favortie</button>";
+						} else {
+							echo "<button type='button' onclick='unfavorite(".$bookId.");'>Unfavorite</button>";
+						}
+						if($interaction['reading'] == false){
+							echo "<button type='button' onclick='startReading(".$bookId.");'>Start reading</button>";
+						} else {
+							if($interaction['posdta'] == false) {
+								echo "<button type='button' onclick='posdta();'>Posdta</button>";
+							} else {
+								echo "<button type='button' onclick='stopReading(".$bookId.");'>Stop Reading</button>";
+							}
+							
+						}
+					}
 					print_r($callForPosdtas);
 					print_r($callForInfo);
 					?>
