@@ -206,6 +206,9 @@ function tokenCurlCall($token, $method, $url, $data = false) {
 		case "PUT":
 			curl_setopt($curl, CURLOPT_PUT, 1);
 			break;
+		case "DELETE":
+			curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
+			break;
 		default: if($data) {
 			$url = sprintf("%s?%s", $url, http_build_query($data));
 		}
