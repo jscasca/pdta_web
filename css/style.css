@@ -123,6 +123,7 @@ div.book-cover-container img{height:300px;}
 /*----------------------------*/
 div.actions-container{padding-bottom:20px;}
 div.actions-container div{padding-top:20px;text-align: center;}
+button.bookActionButton{background-color:transparent; border:none;}
 /*--------------------------*/
 /*--3.2.2 BOOK REVIEWS------*/
 /*--------------------------*/
@@ -142,6 +143,21 @@ div.comment .comment-actions div{display:inline;font-size:9px;padding:0 5px 0 5p
 /*---------------------------*/
 div.related-container{color:#000;padding-top:10px;padding-bottom:20px;}
 div.related-container div{color:#000 !important;}
+/*---------------------------*/
+/*--3.2.3 POSDTA BOX---------*/
+/*---------------------------*/
+.starRating:not(old){display:inline-block;width:7.5em;height:1.5em;overflow:hidden;vertical-align:bottom;}
+.starRating:not(old) > input{margin-right : -100%;opacity      : 0;}
+.starRating:not(old) > label{display: block;float:right;position:relative;background:url('../img/star-off.svg');background-size:contain;}
+.starRating:not(old) > label:before{content:'';display:block;width:1.5em;height:1.5em;background:url('../img/star-on.svg');background-size:contain;opacity:0;transition:opacity 0.2s linear;}
+.starRating:not(old) > label:hover:before,
+.starRating:not(old) > label:hover ~ label:before,
+.starRating:not(:hover) > :checked ~ label:before{opacity : 1;}
+div.ratingContainer{width:100px; margin: 0 auto;}
+.modal-body h2{text-align: center;}
+div.posdtaBoxContainer{width:300px; margin:0 auto;}
+textarea.posdtaBox{width:100%;}
+
 /*---------------------------*/
 /*---------4 LOGIN-----------*/
 /*---------------------------*/

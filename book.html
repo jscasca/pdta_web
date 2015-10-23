@@ -51,25 +51,62 @@
 				</ul>
 			</div>
 			<div class="col-md-10 content-container">
+			<div id="myModal" class="modal fade">
+<div class="modal-dialog">
+    <div class="modal-content">
+    	<input type="hidden" name="product-fund-id" id="product-fund-id" value="">
+    	<input type="hidden" name="registry-id" id="registry-id" value="<?php echo $parameters[2]; ?>">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 class="modal-title"><span id="modal-title-placeholder">Sellar este libro</span></h3>
+        </div>
+        <div class="modal-body">
+	        <h2>1.-Califica el libro</h2>
+	        <div class="ratingContainer">
+		         <span class="starRating">
+				  <input id="rating5" type="radio" name="rating" value="5">
+				  <label for="rating5">5</label>
+				  <input id="rating4" type="radio" name="rating" value="4">
+				  <label for="rating4">4</label>
+				  <input id="rating3" type="radio" name="rating" value="3">
+				  <label for="rating3">3</label>
+				  <input id="rating2" type="radio" name="rating" value="2">
+				  <label for="rating2">2</label>
+				  <input id="rating1" type="radio" name="rating" value="1">
+				  <label for="rating1">1</label>
+				</span>
+			</div>
+			<h2>2.-Deja una posdta</h2>
+			<div class="posdtaBoxContainer">
+				<textarea id="posdtaBody" class="posdtaBox"></textarea>
+			</div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <button type="button" id="btn-to-review" class="btn btn-success">Sellar</button>
+        </div>
+    </div>
+</div>
+</div>
 				<div class="col-md-3 book-cover-container">
 					<img class="book-cover" src="img/sj.jpg">
 				</div>
 				<div class="col-md-6">
 					<div class="col-md-12"><div class="book-title"><h1>Steve Jobs, la biograf&iacute;a</h1></div></div>
 					<div class="col-md-12"><div class="book-author"><h2>Issac Walterson</h2></div></div>
-					<div class="col-md-12"><div class="book-publisher">Random House</div></div>
+					<!--<div class="col-md-12"><div class="book-publisher">Random House</div></div>-->
 					<div class="col-md-12"><div class="book-year">2012</div></div>
 					<div class="col-md-12"><div class="book-rating">4.5/5.0</div></div>
-					<div class="col-md-12">
+					<!--<div class="col-md-12">
 						<div class="book-abstract">
 							Based on more than forty interviews with Jobs conducted over two years—as well as interviews with more than a hundred family members, friends, adversaries, competitors, and colleagues—Walter Isaacson has written a riveting story of the roller-coaster life and searingly intense personality of a creative entrepreneur whose passion for perfection and ferocious drive revolutionized six industries: personal computers, animated movies, music, phones, tablet computing, and digital publishing.
 							At a time when America is seeking ways to sustain its innovative edge, and when societies around the world are trying to build digital-age economies, Jobs stands as the ultimate icon of inventiveness and applied imagination. He knew that the best way to create value in the twenty-first century was to connect creativity with technology. He built a company where leaps of the imagination were combined with remarkable feats of engineering.  
 						</div>
-					</div>
+					</div>-->
 					<div class="col-md-12 actions-container">
-						<div class="col-md-2"><img src="img/marcar.png"><br>Marcar</div>
-						<div class="col-md-2"><img src="img/sello.png"><br>Sellar</div>
-						<div class="col-md-2"><img src="img/libreria.png"><br>Quiero leerlo</div>
+						<div class="col-md-2"><button id="startBook" class="bookActionButton"><img src="img/marcar.png"></button><br>Marcar</div>
+						<div class="col-md-2"><button id="finishBook" class="bookActionButton"><img src="img/sello.png"></button><br>Sellar</div>
+						<div class="col-md-2"><button id="wishList" class="bookActionButton"><img src="img/libreria.png"></button><br>Quiero leerlo</div>
 					</div>
 				</div>
 				<div class="col-md-12 module">
@@ -123,7 +160,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-12 module">
+				<!--<div class="col-md-12 module">
 					<div class="col-md-12 dividing-title">
 						Mas libros de este autor
 					</div>
@@ -177,8 +214,8 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-md-12 module">
+				</div>-->
+				<!--<div class="col-md-12 module">
 					<div class="col-md-12 dividing-title">
 						Recomendaciones
 					</div>
@@ -232,7 +269,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div>-->
 			</div>
 		</div>
 	</div>
@@ -244,6 +281,10 @@
 $(function() {
     $('.banner').unslider();
 });
+$("#finishBook").click(function(){
+	$("#myModal").modal('show');
+});
+
 </script>
 <script>
 </body>
