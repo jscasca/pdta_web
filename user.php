@@ -14,7 +14,7 @@ if(!isset($_REQUEST['user'])) {
 }
 $userId = $_REQUEST['user'];
 
-if(isset($_SESSION[SID])){
+if(isset($_SESSION[SID]) && $_SESSION[SID] != $userId){
 	$token = $_SESSION[TOKEN];
 	$callForUserInteraction = tokenCurlCall($token, "GET", "api/users/".$userId."/interactions");
 	
@@ -23,9 +23,19 @@ if(isset($_SESSION[SID])){
 	//get friends who read it
 }
 
-$callForPosdtas = authenticationlessCurlCall("GET", "api/users/".$userId."/posdtas", array('start'=>0, 'limit'=>10));
+//$callForPosdtas = authenticationlessCurlCall("GET", "api/users/".$userId."/posdtas", array('start'=>0, 'limit'=>10));
 
 $callForInfo = authenticationlessCurlCall("GET", "api/users/".$userId."/info");
+$userInfo = json_decode($callForInfo[RESPONSE], true);
+
+$user = $userInfo['user'];
+
+$followers = $userInfo['followers'];
+$following = $userInfo['following'];
+$wishlisted = $userInfo['wishlisted'];
+$favorited = $userInfo['favorited'];
+$reading = $userInfo['reading'];
+$posdtas = $userInfo['posdtas'];
 ?>
 <!doctype HTML>
 <html>
@@ -69,7 +79,18 @@ $callForInfo = authenticationlessCurlCall("GET", "api/users/".$userId."/info");
 		include("_navbar.php");
 		?>
 		<div class="mainpage">
-			<div class="row">
+			<div class="row user-main">
+				<div class="col-md-10 content-container">
+					<div class="col-md-3 user-pic-container">
+						<img class="book-cover" src="<?php echo $user['icon'];?>">
+					</div>
+					<div class="col-md-6">
+						<div class="col-md-12"><div class="user-name"><h1><?php echo $user['displayName']; ?></h1></div></div>
+						<div class="col-md-12"><div class="user-username">
+							<h2><?php echo $user['userName']; ?></h2>
+						</div></div>
+					</div>
+				</div>
 				<div class="">
 					<?php
 					if(isset($_SESSION[SID]))print_r($callForUserInteraction);
@@ -77,6 +98,12 @@ $callForInfo = authenticationlessCurlCall("GET", "api/users/".$userId."/info");
 					print_r($callForInfo);
 					?>
 				</div>
+			</div>
+			<div class="row user-books">
+			
+			</div>
+			<div class="row user-posdtas">
+			
 			</div>
 		</div>
 	</div>

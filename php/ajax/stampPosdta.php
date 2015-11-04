@@ -14,6 +14,16 @@ if(!isset($_REQUEST['book'])) {
 	die();
 }
 
+if(!isset($_REQUEST['rating'])) {
+	http_response_code(403);//Make a return for no rating
+	die();
+}
+
+if(!isset($_REQUEST['posdta'])) {
+	http_response_code(403);//Make a return for no comment
+	die();
+}
+
 $book = $_REQUEST['book'];
 
 $posdta['rating'] = $rating;

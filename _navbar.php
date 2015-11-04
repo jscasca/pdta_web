@@ -37,7 +37,7 @@ if(isset($_SESSION[SID])){}
                 <?php	if(!isset($_SESSION[SID])) { ?>
 				<li><a href="login.php">Inicia Session</a></li>
 				<?php	} else { ?>
-				<li><a href="#">Perfil</a></li>	
+				<li><a href="me.php">Perfil</a></li>	
 				<li><a href="#">Seguidores</a></li>	
 				<li class="dropdown">
 					<a data-toggle="dropdown" class="dropdown-toggle" href="#"><img src="img/defaultUser.png" class="profilePic" >Tin Kalzetin</a>

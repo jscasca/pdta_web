@@ -7,21 +7,12 @@
 session_start();
 require("php/utils/commons.php");
 
-if(isset($_SESSION[SID])){}
-$bookId = -1;
-if(!isset($_REQUEST['book'])) {
+if(!isset($_SESSION[SID])){
+	header("Location: ".$internalErrorPage);
 	die();
 }
-$bookId = $_REQUEST['book'];
 
-if(isset($_SESSION[SID])){
-	$token = $_SESSION[TOKEN];
-	$callForUserInteraction = tokenCurlCall($token, "GET", "api/books/".$bookId."/interactions");
-	
-	//Get friends reading this
-	
-	//get friends who read it
-}
+$me = $_SESSION[SID];
 
 $callForPosdtas = authenticationlessCurlCall("GET", "api/books/".$bookId."/posdtas", array('start'=>0, 'limit'=>10));
 

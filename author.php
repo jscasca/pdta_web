@@ -22,6 +22,8 @@ if($callForBooks[HTTP_STATUS] != 200) {
 	//DO SOMETHING IF IT BREAKS
 }
 $authorBooks = json_decode($callForBooks[RESPONSE], true);
+
+$authorInfo = "";
 ?>
 <!doctype HTML>
 <html>
@@ -66,11 +68,18 @@ $authorBooks = json_decode($callForBooks[RESPONSE], true);
 		?>
 		<div class="mainpage">
 			<div class="row">
+				
+			</div>
+			<div class="row">
 				<div class="">
 					<ul>
 					<?php
 					foreach($authorBooks as $book) {
-						echo "<li><div class='authorBook'><img src='img/default.png' />".$book['title']."</div></li>";
+						echo "<li><div class='authorBook'>
+							<a href='book.php?book=".$book['id']."'>
+							<img src='".$book['thumbnail']."' />".$book['title']."
+							</a>
+							</div></li>";
 					}
 					print_r($authorBooks);
 					?>

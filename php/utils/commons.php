@@ -8,7 +8,7 @@ define('CLIENT_ID', 'webApp');
 define('CLIENT_SECRET', 'web123');
 
 //FRONT_END SERVER
-define('BASE_DIR', '/bootstrapPd/');
+define('BASE_DIR', '/Posdta/');
 
 //BACK_END SERVER (CHANGE FOR PRODUCTIVE)
 define('REST_API','http://localhost:8080/Posdta/');
