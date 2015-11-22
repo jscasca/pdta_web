@@ -11,7 +11,7 @@ $limit = 10;
 $call = authenticationlessCurlCall("GET", "api/search/anything", array('start'=>0, 'limit'=>10, 'query'=>$query));
 //print_r($call);
 if($call[HTTP_STATUS] != 200) {
-	
+	header('Location: '.'index.php');die();
 }
 $results = json_decode($call[RESPONSE], true);
 $gResults = array();

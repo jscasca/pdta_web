@@ -13,7 +13,8 @@ if(!isset($_REQUEST['book'])) {
 	die();
 }
 $bookId = $_REQUEST['book'];
-
+$userActions = "";
+$canPost = false;
 if(isset($_SESSION[SID])){
 	$token = $_SESSION[TOKEN];
 	$callForUserInteraction = tokenCurlCall($token, "GET", "api/books/".$bookId."/interactions");
@@ -21,6 +22,32 @@ if(isset($_SESSION[SID])){
 	//Get friends reading this
 	
 	//get friends who read it
+	$interaction = json_decode($callForUserInteraction[RESPONSE], true);
+	//print_r($interaction);
+	//var_dump($interaction);
+	if($interaction['wishlisted'] == false){
+		$userActions.=  "<button type='button' onclick='wishlist(".$bookId.");'>Add to wishlist</button>";
+	} else {
+		$userActions.=  "<button type='button' onclick='unwishlist(".$bookId.");'>Remove from wishlist</button>";
+	}
+	if($interaction['favorite'] == false){
+		$userActions.=  "<button type='button' onclick='favorite(".$bookId.");'>Favortie</button>";
+	} else {
+		$userActions.=  "<button type='button' onclick='unfavorite(".$bookId.");'>Unfavorite</button>";
+	}
+	if($interaction['reading'] == false){
+		$userActions.=  "<button type='button' onclick='startReading(".$bookId.");'>Start reading</button>";
+	} else {
+		if($interaction['posdta'] == false) {
+			$userActions.=  "<button type='button' onclick='posdta();'>Posdta</button>";
+			$canPost = true;
+			//echo "<textarea id='yourposdta'></textarea>";
+			//echo "<input type='text' id='yourrating'>";
+		} else {
+			$userActions.=  "<button type='button' onclick='stopReading(".$bookId.");'>Stop Reading</button>";
+		}
+		
+	}
 }
 
 $callForPosdtas = authenticationlessCurlCall("GET", "api/books/".$bookId."/posdtas", array('start'=>0, 'limit'=>10));
@@ -174,15 +201,23 @@ $ratings = $book['rating'];
 		?>
 		<div class="mainpage">
 			<div class="row">
-				<div class="col-md-10 content-container">
-					<div class="col-md-3 book-cover-container">
+				<div class="col-md-12 content-container">
+					<div class="col-md-2 col-xs-2 book-cover-container">
 						<img class="book-cover" src="<?php echo $book['icon'];?>">
 					</div>
-					<div class="col-md-6">
-						<div class="col-md-12"><div class="book-title"><h1><?php echo $book['title']; ?></h1></div></div>
+					<div class="col-md-8 col-xs-8">
+						<div class="col-md-12"><div class="book-title"><h1><?php echo $book['title']." (".$book['language']['code'].")"; ?></h1></div></div>
 						<div class="col-md-12"><div class="book-author">
 							<a href="<?php echo "author.php?author=".$author['id'];?>"><h2><?php echo $author['name']; ?></h2></a>
 						</div></div>
+						<div class="col-md-12"><div class="book-rating"><?php echo $book['rating']['rating']."/5"; ?></div></div>
+						<div class="col-md-12"><div class="book-actions"><?php echo $userActions;?></div></div>
+						<div class="col-md-12"><div class="book-rate"><?php
+							if($canPost) {
+								echo "<textarea cols='40' id='yourposdta'></textarea>";
+								echo "<input type='text' id='yourrating'>";
+							}
+						?></div></div>
 					</div>
 				</div>
 			</div>
@@ -190,31 +225,7 @@ $ratings = $book['rating'];
 			<div class="row">
 				<div class="">
 					<?php
-					if(isset($_SESSION[SID])){
-						$interaction = json_decode($callForUserInteraction[RESPONSE], true);
-						print_r($interaction);
-						var_dump($interaction);
-						if($interaction['wishlisted'] == false){
-							echo "<button type='button' onclick='wishlist(".$bookId.");'>Add to wishlist</button>";
-						} else {
-							echo "<button type='button' onclick='unwishlist(".$bookId.");'>Remove from wishlist</button>";
-						}
-						if($interaction['favorite'] == false){
-							echo "<button type='button' onclick='favorite(".$bookId.");'>Favortie</button>";
-						} else {
-							echo "<button type='button' onclick='unfavorite(".$bookId.");'>Unfavorite</button>";
-						}
-						if($interaction['reading'] == false){
-							echo "<button type='button' onclick='startReading(".$bookId.");'>Start reading</button>";
-						} else {
-							if($interaction['posdta'] == false) {
-								echo "<button type='button' onclick='posdta();'>Posdta</button>";
-							} else {
-								echo "<button type='button' onclick='stopReading(".$bookId.");'>Stop Reading</button>";
-							}
-							
-						}
-					}
+					
 					print_r($callForPosdtas);
 					print_r($callForInfo);
 					?>
