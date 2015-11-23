@@ -27,7 +27,7 @@
 /*---------------*/
 /*--1.GlOBALS----*/
 /*---------------*/
-@import url(http://fonts.googleapis.com/css?family=Lato:300);
+@import url(http://fonts.googleapis.com/css?family=Lato:300,100);
 body{font-family: 'Lato', sans-serif !important;background:#202022 !important;}
 footer{margin:15px 0 15px 0;color:#e2e2e2;}
 /*---------------*/
@@ -110,26 +110,36 @@ div.lateral-menu ul li img{height:15px; width:15px;margin-right:5px; position:re
 /*---------------------*/
 /*--3.2 BOOK INFO------*/
 /*---------------------*/
-div.content-container{padding:0px;background:#fff;}
-div.book-title h1{margin-bottom:0;}
-div.book-author h2{margin:0;}
+div.content-container{padding:60px 0px 30px 0px;background:#fff;}
+div.book-card {
+  max-width: 700px;
+  padding: 15px;
+  margin: 0 auto;
+  background-color:rgba(250,250,250,1);
+  border-radius:2px;
+  padding:20px 20px 40px 20px;
+  border:solid 1px #EEEEEE;
+  box-shadow: 5px 5px 2px #888888;
+}
+div.book-title h1{margin-bottom:0; padding: 5px 0px 5px 0px;text-align:center;}
+div.book-author h2{margin:0; text-align:center;}
 div.book-publisher{}
 div.book-year{font-size:9px;}
-div.book-rating{font-size: 9px;}
+div.book-rating{padding:10px 0px 10px 0px;font-size: 12px;text-align:center;border-bottom:solid 1px #AAAAAA;}
 div.book-cover-container{text-align: center;padding:20px;}
-div.book-cover-container img{height:300px;}
+div.book-cover-container img{height:200px;}
 /*----------------------------*/
 /*--3.2.1 BOOK ACTIONS--------*/
 /*----------------------------*/
-div.actions-container{padding-bottom:20px;}
+div.actions-container{padding-bottom:20px;text-align:center;}
 div.actions-container div{padding-top:20px;text-align: center;}
 button.bookActionButton{background-color:transparent; border:none;}
 /*--------------------------*/
 /*--3.2.2 BOOK REVIEWS------*/
 /*--------------------------*/
-div.dividing-title{padding:3px 3px 3px 20px;background:#002029;margin:0;color:#fff;}
-div.module{padding:0;}
-div.comment{background:#efefef;margin:2px 0 2px 0;padding:20px;}
+div.dividing-title{padding:3px 3px 3px 20px;margin:0;color:#777;font-size:25px;font-weight:100;border-bottom: 1px solid #EEE;}
+div.module{padding:10px 0px 0px 0px;}
+div.comment{background:#ffffff;margin:2px 0 2px 0;padding:20px;}
 div.comment .comment-name{display:inline;}
 div.comment .comment-content{}
 div.comment .comment-rating{padding-left:10px;display:inline;}
@@ -143,6 +153,7 @@ div.comment .comment-actions div{display:inline;font-size:9px;padding:0 5px 0 5p
 /*---------------------------*/
 div.related-container{color:#000;padding-top:10px;padding-bottom:20px;}
 div.related-container div{color:#000 !important;}
+div.thumb{border:none;}
 /*---------------------------*/
 /*--3.2.3 POSDTA BOX---------*/
 /*---------------------------*/
