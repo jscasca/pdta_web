@@ -37,7 +37,7 @@ div.lateral-one{padding:50px 0 0 0;}
 img.logo{height:33px;position:relative;top:-7px;}
 .navbar-custom{background-color: #000000;}
 div.login-details{padding:10px;}
-div.login-details .user-img{float:left;background:url(../img/sj.jpg);background-position: center;background-size: 100%;background-repeat: no-repeat;width:40px;height:40px;position:relative;top:-5px;}
+div.login-details .user-img{float:left;/*background:url(../img/sj.jpg);*/background-position: center;background-size: 100%;background-repeat: no-repeat;width:40px;height:40px;position:relative;top:-5px;}
 div.login-details .user-name{float:left;color:#fff;padding:5px;}
 /*---------------*/
 /*--1.2-FOOTER---*/
