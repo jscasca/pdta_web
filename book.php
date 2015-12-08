@@ -157,6 +157,30 @@ $(function() {
 $("#finishBook").click(function(){
 	$("#myModal").modal('show');
 });
+$("#btn-to-review").click(function(){
+	var book = p_book;
+	var posdta = $("#posdtaBody").val();
+	var rating = $("input[name=rating]:checked").val();
+	if(rating === undefined) {return false;}
+	if(posdta == "") {return false;}
+	postPosdta(book, posdta, rating);
+});
+
+function postPosdta(book, posdta, rating) {
+	$.ajax({
+		type:"GET",
+		url: "php/ajax/postPosdta.php",
+		data: {"book": book, "rating": rating, "posdta": posdta},
+		success: function(data) {
+			//Do some fancy stuff
+			displayBookData(data);
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			console.log(xhr.status);
+			console.log(thrownError);
+		}
+	});
+}
 
 function getBookInfo(book) {
 	$.ajax({

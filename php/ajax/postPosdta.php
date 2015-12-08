@@ -21,8 +21,8 @@ if(!isset($_REQUEST['posdta'])) {
 	die("Posdta missing");
 }
 $book = $_REQUEST['book'];
-$posdta['rating'] = $rating;
-$posdta['posdta'] = $comment;
+$posdta['rating'] = $_REQUEST['rating'];
+$posdta['posdta'] = $_REQUEST['posdta'];
 $token = $_SESSION[TOKEN];
 //$getUser = tokenCurlCall($accessToken, "GET", ME);
 $response = tokenCurlCall($token, "POST", "api/books/".$book."/posdtas", $posdta);
@@ -31,7 +31,8 @@ if($code != 200 && $code != 204) {
 	http_response_code($code); die("BoS");
 } else {
 	//$response[RESPONSE] should be a book
-	header('HTTP/1.1 204 No response', true, 204);die();
+	//header('HTTP/1.1 204 No response', true, 204);die();
+	print($response[RESPONSE]);
 }
 header('HTTP/1.1 500 Internal Server E', true, 501);
 ?>
