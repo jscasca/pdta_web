@@ -10,7 +10,7 @@ if(!isset($_REQUEST['q'])) {
 
 $query = $_REQUEST['q'];
 $row = isset($_REQUEST['start']) ? $_REQUEST['start'] : '0';
-$limit = isset($_REQUEST['limit']) ? $_REQUEST['limit'] : '10';
+$limit = isset($_REQUEST['limit']) ? $_REQUEST['limit'] : '20';
 
 $call = authenticationlessCurlCall(GET, API_SEARCH_ANYTHING, array('start'=>$row, 'limit'=>$limit, 'query'=>$query));
 

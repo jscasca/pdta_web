@@ -108,17 +108,8 @@ session_start();require("php/commons.php");
 					<div class="col-md-12 dividing-title">
 						Opiniones sobre este libro
 					</div>
-					<div class="col-md-12 comment">
-						<div class="col-md-12 comment-text">
-							<div class="col-md-12">
-								<div class="comment-name">Erik Sthal</div><div class="comment-rating">4.5/5.0</div>
-							</div>				
-							<div class="col-md-12 comment-content">Me gusto mucho el libro, creo que está muy bien entender ciertos asuntos que se manejan en el. Ayuda a aclarar el panorama y te hace sentir muy bien cuando terminas de leerlo, me gusta mucho, quiero o</div>
-							<div class="col-md-12 comment-actions">
-								<div>Seguir</div><div>Reportar</div>
-							</div>
-						</div>
-					</div>
+					<div class="" id="posdtas"></div>
+					
 						<div class="col-md-12 comment">
 							<div class="col-md-12 comment-text">
 								<div class="col-md-12">
@@ -154,9 +145,10 @@ $(function() {
 	}
 });
 
-$("#finishBook").click(function(){
+/*$("#finishBook").click(function(){
 	$("#myModal").modal('show');
-});
+});*/
+
 $("#btn-to-review").click(function(){
 	var book = p_book;
 	var posdta = $("#posdtaBody").val();
@@ -173,13 +165,18 @@ function postPosdta(book, posdta, rating) {
 		data: {"book": book, "rating": rating, "posdta": posdta},
 		success: function(data) {
 			//Do some fancy stuff
-			displayBookData(data);
+			donePosdating(data);
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
 			console.log(xhr.status);
 			console.log(thrownError);
 		}
 	});
+}
+
+function donePosdating(data) {
+	$("#myModal").modal('hide');
+	//Update stuff;
 }
 
 function getBookInfo(book) {
@@ -219,13 +216,50 @@ function getBookPosdtas(book) {
 		url: "php/ajax/getBookPosdtas.php",
 		data: "book="+book,
 		success: function(data) {
-			console.log(data);
+			displayPosdtas(data);
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
 			console.log(xhr.status);
 			console.log(thrownError);
 		}
 	});
+}
+
+function displayPosdtas(data) {
+	var posdtas = jQuery.parseJSON(data);
+	if(posdtas.length == 0) {
+		//Set to no posdtas
+	} else {
+		jQuery.each(posdtas, function(index, obj) {
+			console.log(obj);
+			var posdtaHolder = $("<div class='col-md-12 comment'></div>");
+			var posdtaText = $("<div class='col-md-12 comment-text'></div>");
+			var posdtaHeader = $("<div class='col-md-12'></div>");
+			var posdtaUser = $("<div class='comment-name'>"+obj['user']['userName']+"</div>");
+			var posdtaRating = $("<div class='comment-rating'>"+obj['rating']+"</div>");
+			var posdtaContent = $("<div class='col-md-12 comment-content'>"+obj['posdta']+"</div>");
+			var posdtaActions = $("<div class='col-md-12 comment-actions'><div>Seguir</div><div>Reportar</div></div>");
+			posdtaHeader.append(posdtaUser).append(posdtaRating);
+			posdtaText.append(posdtaHeader).append(posdtaContent).append(posdtaActions);
+			posdtaHolder.append(posdtaText);
+			//posdtaHolder.insertAfter('#posdtas');
+			$('#posdtas').after(posdtaHolder);
+			//print each posdta
+			/*
+			<div class="col-md-12 comment">
+						<div class="col-md-12 comment-text">
+							<div class="col-md-12">
+								<div class="comment-name">Erik Sthal</div><div class="comment-rating">4.5/5.0</div>
+							</div>				
+							<div class="col-md-12 comment-content">Me gusto mucho el libro, creo que está muy bien entender ciertos asuntos que se manejan en el. Ayuda a aclarar el panorama y te hace sentir muy bien cuando terminas de leerlo, me gusta mucho, quiero o</div>
+							<div class="col-md-12 comment-actions">
+								<div>Seguir</div><div>Reportar</div>
+							</div>
+						</div>
+					</div>
+			*/
+		});
+	}
 }
 
 function setBookActions(data, bookId) {
@@ -284,7 +318,19 @@ function startBook(bookId) {
 }
 
 function finishBook(bookId) {
-	console.log("terminar de leer");
+	$.ajax({
+		type:"GET",
+		url: "php/ajax/deleteFromReadings.php",
+		data: "book="+bookId,
+		success: function(data) {
+			$('#startBook').html('<button class="bookActionButton"><img src="img/marcar.png"></button><br>Marcado');
+			$('#finishBook').html('<button class="bookActionButton" ><img src="img/posdted.png"></button><br>Sellar');
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			console.log(xhr.status);
+			console.log(thrownError);
+		}
+	});
 }
 
 function wishlistBook(bookId) {

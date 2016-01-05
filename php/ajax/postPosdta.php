@@ -34,5 +34,5 @@ if($code != 200 && $code != 204) {
 	//header('HTTP/1.1 204 No response', true, 204);die();
 	print($response[RESPONSE]);
 }
-header('HTTP/1.1 500 Internal Server E', true, 501);
+//header('HTTP/1.1 500 Internal Server E', true, 501);
 ?>

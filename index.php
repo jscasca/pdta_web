@@ -71,12 +71,12 @@ session_start();require("php/commons.php");
 							</div>
 					</div>
 					<div class="col-md-12 sub-lateral two">
-						<div class="col-md-12 title">Los mejores calificados</div>
-						<ul class="featured">
+						<div class="col-md-12 title">Los mas leidos</div>
+						<ul class="featured" id="most-read">
+							<!--<li><img src="img/sj.jpg">La biograf&iacute;a de Steve Jobs</li>
 							<li><img src="img/sj.jpg">La biograf&iacute;a de Steve Jobs</li>
 							<li><img src="img/sj.jpg">La biograf&iacute;a de Steve Jobs</li>
-							<li><img src="img/sj.jpg">La biograf&iacute;a de Steve Jobs</li>
-							<li><img src="img/sj.jpg">La biograf&iacute;a de Steve Jobs</li>
+							<li><img src="img/sj.jpg">La biograf&iacute;a de Steve Jobs</li>-->
 						</ul>
 					</div>
 			</div>
@@ -113,7 +113,56 @@ session_start();require("php/commons.php");
 <script src="js/unslider.js"></script>
 <script>
 $(function() {
-    $('.banner').unslider();
+    //$('.banner').unslider();
+    getMostRead();
+    getTrending();
 });
+
+function getMostRead() {
+	$.ajax({
+		type:"GET",
+		url: "php/ajax/getMostRead.php",
+		success: function(data) {
+			displayMostRead(data);
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			console.log(xhr.status);
+			console.log(thrownError);
+		}
+	});
+}
+
+function displayMostRead(data) {
+	var books = jQuery.parseJSON(data);
+	jQuery.each(books, function(index, book) {
+		//<li><img src="img/sj.jpg">La biograf&iacute;a de Steve Jobs</li>
+		var il = $('<il></il>', {bookId: book['id'], class: 'booklisted'});
+		var img = $('<img/>', {src:book['icon']});
+		console.log(book);
+		console.log(img);
+		il.append(img).append("<a href='book.php?book="+book['id']+"' >"+book['title'] + "</a>");
+		console.log(il);
+		console.log($('#most-read'));
+		$('#most-read').append(il);
+	});
+}
+
+function getTrending() {
+	$.ajax({
+		type:"GET",
+		url: "php/ajax/getMostRead.php",
+		success: function(data) {
+			displayTrending(data);
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			console.log(xhr.status);
+			console.log(thrownError);
+		}
+	});
+}
+
+function displayTrending(data) {
+	$('.banner').unslider();
+}
 </script>
 </body>
