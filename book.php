@@ -235,8 +235,8 @@ function displayPosdtas(data) {
 			var posdtaHolder = $("<div class='col-md-12 comment'></div>");
 			var posdtaText = $("<div class='col-md-12 comment-text'></div>");
 			var posdtaHeader = $("<div class='col-md-12'></div>");
-			var posdtaUser = $("<div class='comment-name'>"+obj['user']['userName']+"</div>");
-			var posdtaRating = $("<div class='comment-rating'>"+obj['rating']+"</div>");
+			var posdtaUser = $("<div class='comment-name'><a href='user.php?user="+obj['user']['id']+"'>"+obj['user']['userName']+"</a></div>");
+			var posdtaRating = $("<div class='comment-rating'>"+obj['rating']+".0/5.0</div>");
 			var posdtaContent = $("<div class='col-md-12 comment-content'>"+obj['posdta']+"</div>");
 			var posdtaActions = $("<div class='col-md-12 comment-actions'><div>Seguir</div><div>Reportar</div></div>");
 			posdtaHeader.append(posdtaUser).append(posdtaRating);
@@ -402,7 +402,7 @@ function displayBookData(data) {
 	$("#registry-id").val(book['id']);
 	$("#book_title").html(book['title'] + " (" + book['language']['code'] + ")");
 	$("#book_icon").attr('src', book['icon']);
-	$("#book_rating").html(ratings["rating"].toFixed(1));
+	$("#book_rating").html(ratings["rating"].toFixed(1)+"/5.0");
 	$("#book_author").html("<a href='author.php?author=" + author['id'] + "'>" + author['name'] + "</a>");
 	
 }
