@@ -79,31 +79,17 @@ session_start();require("php/commons.php");
 										<div class="col-md-12 dividing-title">
 						Mas libros de este autor
 					</div>
-					<div class="col-md-12">
-						<div class="col-md-4 related-container">
+					<div class="col-md-12" id="same-author">
+						
+						
+						<!--<div class="col-md-4 related-container">
 							<div class="book-sm">
 		        				<div class="book-cover"><img src="img/sj.jpg"></div>
 		        				<div class="book-title">Steve Jobs La Biogra&iacute;a</div>
 		        				<div class="book-author">Issac Walterson</div>
 		        				<div class="book-rating thumb">4.5/5.0</div>
 							</div>
-						</div>
-						<div class="col-md-4 related-container">
-							<div class="book-sm">
-		        				<div class="book-cover"><img src="img/sj.jpg"></div>
-		        				<div class="book-title">Steve Jobs La Biogra&iacute;a</div>
-		        				<div class="book-author">Issac Walterson</div>
-		        				<div class="book-rating thumb">4.5/5.0</div>
-							</div>
-						</div>
-						<div class="col-md-4 related-container">
-							<div class="book-sm">
-		        				<div class="book-cover"><img src="img/sj.jpg"></div>
-		        				<div class="book-title">Steve Jobs La Biogra&iacute;a</div>
-		        				<div class="book-author">Issac Walterson</div>
-		        				<div class="book-rating thumb">4.5/5.0</div>
-							</div>
-						</div>
+						</div>-->
 					</div>
 					<div class="col-md-12 dividing-title">
 						Opiniones sobre este libro
@@ -140,6 +126,7 @@ $(function() {
     $('.banner').unslider();
     getBookInfo(p_book);
     getBookPosdtas(p_book);
+    getBooksFromSameAuthor(p_book);
     if(isLogged) {
 		getBookInteractions(p_book);
 	}
@@ -157,6 +144,39 @@ $("#btn-to-review").click(function(){
 	if(posdta == "") {return false;}
 	postPosdta(book, posdta, rating);
 });
+
+function getBooksFromSameAuthor(book) {
+	$.ajax({
+		type:"GET",
+		url: "php/ajax/getBooksFromSameAuthor.php",
+		data: {"book": book},
+		success: function(data) {
+			//Do some fancy stuff
+			displayBooksFromSameAuthor(data);
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			console.log(xhr.status);
+			console.log(thrownError);
+		}
+	});
+}
+
+function displayBooksFromSameAuthor(data) {
+	var books = jQuery.parseJSON(data);
+	jQuery.each(books, function(index, book) {
+		//<li><img src="img/sj.jpg">La biograf&iacute;a de Steve Jobs</li>
+		var div = $('<div></div>', {bookId: book['id'], class: 'col-md-4 related-container'});
+		var divSm = $('<div></div>', {class: 'book-sm'});
+		divSm.append('<div class="book-cover"><img src="'+book['thumbnail']+'"></div>');
+		divSm.append('<div class="book-title"><a href="book.php?book='+book['id']+'" >'+book['title']+'</a></div>');
+		var rating = book['rating'];
+		if(rating == null) rating = 0;
+		else rating = book['rating']['rating'];
+		divSm.append('<div class="book-rating thumb">'+rating.toFixed(1)+'/5.0</div>');
+		div.append(divSm);
+		$('#same-author').append(div);
+	});
+}
 
 function postPosdta(book, posdta, rating) {
 	$.ajax({
