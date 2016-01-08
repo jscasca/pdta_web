@@ -5,7 +5,7 @@ require 'exceptions.php';
 define('CLIENT_ID', 'webApp');
 define('CLIENT_SECRET', 'web123');
 //FRONT_END SERVER
-define('BASE_DIR', '/Posdta/');
+define('BASE_DIR', '/posdta/');
 //BACK_END SERVER (CHANGE FOR PRODUCTIVE)
 define('REST_API','http://209.177.158.134:8080/posdta/');
 //define('REST_API','http://localhost:8080/Posdta/');
